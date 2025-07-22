@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+requests = "*"
+pydantic = {extras = ["email"], version = "*"}
+python-dotenv = "*"
+databases = "*"
+asyncpg = "*"
+pyjwt = "*"
+aiohttp = "*"
+elasticsearch = "8.13.2"
+bloom-filter2 = "*"
+redis = {extras = ["async"], version = "*"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"
