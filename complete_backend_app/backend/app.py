@@ -14,6 +14,7 @@ from utility.logger import app_logger
 from infra.postgres.setup import db_cli
 from infra.elasticsearch.setup import es_cli
 from infra.redis.setup import redis_service
+from infra.postgres.migrations.migrate import PostgresMigrator
 
 ## Managers
 from services.organization.manager import org_manager
@@ -41,6 +42,8 @@ async def startup():
     await db_cli.initialize()
     await es_cli.initialize()
     await redis_service.initialize()
+    migrator =  PostgresMigrator(db)
+    await migrator.apply_migrations()
 
     # Initialize Managers
     await org_manager.initialize()

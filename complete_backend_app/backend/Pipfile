@@ -16,6 +16,7 @@ aiohttp = "*"
 elasticsearch = "8.13.2"
 bloom-filter2 = "*"
 redis = {extras = ["async"], version = "*"}
+sqlparse = "*"
 
 [dev-packages]
 
