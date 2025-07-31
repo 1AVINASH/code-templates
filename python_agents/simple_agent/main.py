@@ -1,3 +1,4 @@
+import traceback
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from langchain_mcp_adapters.tools import load_mcp_tools
@@ -57,12 +58,13 @@ async def main():
 
                 try:
                     max_history = 10
-                    agent_response = await agent.ainvoke({"messages": [messages[0], messages[-max_history:]]})
+                    agent_response = await agent.ainvoke({"messages": [messages[0]] + messages[-max_history:]})
 
                     ai_message = agent_response["messages"][-1].content
                     print("\nAgent:", ai_message)
                 except Exception as e:
                     print("Error:", e)
+                    print("Traceback:", traceback.format_exc())
 
 
 if __name__ == "__main__":
