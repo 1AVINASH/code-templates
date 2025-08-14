@@ -1,4 +1,5 @@
 create table users (
-    id bigserial;
-    name text;
-)
+    id bigserial,
+    name text,
+    email text
+);
