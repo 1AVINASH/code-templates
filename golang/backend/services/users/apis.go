@@ -26,11 +26,16 @@ func (ua *UserAPIs) registerUserRoutes(mux *chi.Mux) {
 }
 
 func (ua *UserAPIs) getUsers(w http.ResponseWriter, r *http.Request) (interface{}, int) {
-	logger.GetLogger().Infof("Starting to get user")
-	return []string{"Alice", "Bob"}, http.StatusOK
+	logger.Logger.Infof("Starting to get users")
+	users, err := ua.repo.GetUsers()
+	if err != nil {
+		logger.Logger.Errorf("Ran into an error %v", err)
+		return nil, http.StatusBadRequest
+	}
+	return users, http.StatusOK
 }
 
 func (ua *UserAPIs) createUser(w http.ResponseWriter, r *http.Request) (interface{}, int) {
-	logger.GetLogger().Infof("Starting to create user")
+	logger.Logger.Infof("Starting to create user")
 	return map[string]string{"status": "created"}, http.StatusCreated
 }

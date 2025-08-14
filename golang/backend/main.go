@@ -17,21 +17,18 @@ import (
 
 func main() {
 	// Set up logger
-	logger, err := logger.New("debug")
-	if err != nil {
-		log.Fatalf("Failed to init logger %v", err)
-	}
-	logger.Info("Starting server")
+	logger.SetLogger("debug")
+	logger.Logger.Info("Starting server")
 
 	// Set up Environment variables
-	err = godotenv.Load("dev.env")
+	err := godotenv.Load("dev.env")
 	if err != nil {
-		log.Println("No .env file found or unable to load it:", err)
+		logger.Logger.Errorf("No .env file found or unable to load it:", err)
 	}
 
 	// Setting App Mode
 	appMode := os.Getenv("APP_MODE")
-	logger.Infof("App Mode is %s", appMode)
+	logger.Logger.Infof("App Mode is %s", appMode)
 
 	if appMode == "API" {
 		mux := chi.NewRouter()
