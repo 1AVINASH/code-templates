@@ -1,7 +1,7 @@
 package user
 
 import (
-	"net/http"
+	"github.com/go-chi/chi/v5"
 )
 
 type UserManager struct {
@@ -9,7 +9,7 @@ type UserManager struct {
 	apis *UserAPIs
 }
 
-func NewUserManager(mux *http.ServeMux) *UserManager {
+func NewUserManager(mux *chi.Mux) *UserManager {
 	repo := NewUserRepository()
 	apis := NewUserApis(mux, repo)
 	return &UserManager{

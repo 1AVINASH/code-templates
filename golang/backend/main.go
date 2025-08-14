@@ -7,10 +7,11 @@ import (
 
 	"gotemplate/infra/postgres"
 	redisclient "gotemplate/infra/redis"
-	logger "gotemplate/utility"
+	logger "gotemplate/utility/logger"
 
 	user "gotemplate/services/users"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 )
 
@@ -33,7 +34,7 @@ func main() {
 	logger.Infof("App Mode is %s", appMode)
 
 	if appMode == "API" {
-		mux := http.NewServeMux()
+		mux := chi.NewRouter()
 
 		// Set up Infrastructural components
 		redisclient.Initialize()

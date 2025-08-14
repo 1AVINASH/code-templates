@@ -6,7 +6,7 @@ import (
 	"os"
 	"sync"
 
-	logger "gotemplate/utility"
+	logger "gotemplate/utility/logger"
 
 	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
