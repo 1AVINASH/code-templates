@@ -14,12 +14,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// Define a struct to represent the data we want to return.
-type Message struct {
-	Greeting string `json:"greeting"`
-	Author   string `json:"author"`
-}
-
 func main() {
 	// Set up logger
 	logger, err := logger.New("debug")
@@ -53,7 +47,7 @@ func main() {
 
 		// Start the server and listen on port 8080.
 		port := ":8080"
-		log.Fatal(http.ListenAndServe(port, nil))
+		log.Fatal(http.ListenAndServe(port, mux))
 
 	} else if appMode == "CRON" {
 		//
