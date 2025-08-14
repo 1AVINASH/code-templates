@@ -23,11 +23,11 @@ func Initialize() {
 	once.Do(func() {
 		err := godotenv.Load()
 		if err != nil {
-			logger.GetLogger().Error("No .env file found or unable to load it:", err)
+			logger.Logger.Error("No .env file found or unable to load it:", err)
 		}
 		addr := fmt.Sprintf("%s:%s", os.Getenv("REDIS_HOST"), os.Getenv("REDIS_PORT"))
 		password := os.Getenv("REDIS_PASSWORD")
-		logger.GetLogger().Infof("Connecting to redis on addr: %s", addr)
+		logger.Logger.Infof("Connecting to redis on addr: %s", addr)
 
 		RedisClient = redis.NewClient(&redis.Options{
 			Addr:     addr,
